@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use App\Http\Resources\EmployeeResource;
-use Illuminate\Http\Request;
-
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      */
     public function index()
     {
@@ -22,13 +21,13 @@ class EmployeeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Employee $employee
-     * @return \App\Http\Resources\EmployeeResource;
+     * @param Employee $employee
+     * @return EmployeeResource;
      */
     public function delete(Employee $employee)
     {
         $employee->delete();
-        return new EmployeeResource($employee);
 
+        return new EmployeeResource($employee);
     }
 }

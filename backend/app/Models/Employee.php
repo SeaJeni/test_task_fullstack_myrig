@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 /**
  * Class Employee
  * @package App\Models
@@ -22,6 +23,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Employee extends Model
 {
     use SoftDeletes, HasFactory;
+
+    /**
+     * {@inheritdoc}
+     */
     protected $fillable = [
             'first_name',
             'last_name',
@@ -32,10 +37,16 @@ class Employee extends Model
             'position',
     ];
 
+    /**
+     * {@inheritdoc}
+     */
     protected $casts = [
         'salary' => 'float',
         'date_of_birth' => 'datetime',
     ];
 
+    /**
+     * {@inheritdoc}
+     */
     public $timestamps = false;
 }

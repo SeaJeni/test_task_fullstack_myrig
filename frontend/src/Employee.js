@@ -4,11 +4,9 @@ import {API_BASE_URL} from './config'
 import {FaTrashAlt, FaPencilAlt} from 'react-icons/fa'
 import './employee.css'
 
-
 class Employee extends Component {
 
-    async getEmployees() {
-
+    async getEmployees () {
         if (!this.state.employees) {
             try {
                 this.setState({isLoading: true});
@@ -30,8 +28,7 @@ class Employee extends Component {
         }
     }
 
-
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
             employees: null,
@@ -44,7 +41,7 @@ class Employee extends Component {
         this.handleChangeAll = this.handleChangeAll.bind(this);
     }
 
-    handleInputChange(event) {
+    handleInputChange (event) {
         let checkboxes = this.state.checkboxes;
         let index = parseInt(event.target.name);
         checkboxes[index] = event.target.checked;
@@ -60,7 +57,7 @@ class Employee extends Component {
         this.setState({checkboxes: checkboxes, disabled: disabledDeleteButton});
     }
 
-    handleChangeAll(event) {
+    handleChangeAll (event) {
         let checked = event.target.checked;
         let checkboxes = this.state.checkboxes;
         for (let key in checkboxes) {
@@ -69,11 +66,11 @@ class Employee extends Component {
         this.setState({disabled: !checked, isChecked: checked});
     }
 
-    componentDidMount(prevProps) {
+    componentDidMount (prevProps) {
         this.getEmployees();
     }
 
-    deleteEmployees(employee) {
+    deleteEmployees (employee) {
         if (window.confirm('Вы действительно хотите удалить сотрудника?')) {
             fetch(API_BASE_URL + '/employees/' + employee.id, {
                 method: 'DELETE',
@@ -88,7 +85,7 @@ class Employee extends Component {
         }
     }
 
-    age(date_of_birth) {
+    age (date_of_birth) {
         let today = new Date();
         let birthDate = new Date(date_of_birth * 1000);
         let age = today.getFullYear() - birthDate.getFullYear();
@@ -99,30 +96,29 @@ class Employee extends Component {
         return age;
     }
 
-    weight_kg(weight) {
+    weight_kg (weight) {
         let weight_kg = weight * 0.454;
         return weight_kg.toPrecision(3);
     }
 
-    height_sm(height) {
-        let height_сm;
+    height_sm (height) {
+        let heightCm;
         let arrayOfStrings = height.split("'");
         let feet = arrayOfStrings[0];
         if (arrayOfStrings[1] !== null) {
             let arrayOfStrings2 = arrayOfStrings[1];
             let inches = arrayOfStrings2.split('"');
-            height_сm = feet * 30.48 + inches[0] * 2.54;
+            heightCm = feet * 30.48 + inches[0] * 2.54;
         } else {
-            height_сm = feet * 30.48;
+            heightCm = feet * 30.48;
         }
-        let meter = Math.floor(height_сm / 100);
-        let centimeter = Math.floor(height_сm - meter * 100);
+        let meter = Math.floor(heightCm / 100);
+        let centimeter = Math.floor(heightCm - meter * 100);
 
         return meter + "м " + centimeter + "см";
     }
 
-    render() {
-
+    render () {
         return (
             <div>
                 <Header as="h1">Таблица пользователей</Header>

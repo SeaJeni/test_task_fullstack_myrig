@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\Employee;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -13,14 +14,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class EmployeeResource extends JsonResource
 {
     /**
-     * @var mixed
-     */
-
-
-    /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)

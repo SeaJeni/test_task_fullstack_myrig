@@ -5,4 +5,4 @@
  3. Запустить команду: "php artisan db:seed" 
  4. Запустить команду: "php artisan serve"
 Для frontend: 
- 1. Запустить команду: "yarn start"
+  Запустить команду: "yarn start"
